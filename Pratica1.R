@@ -63,4 +63,4 @@ length(bolasMaiorQue70)
 posImpares <- which(bolas %% 2 != 0)
 posImpares
 
-teste
+
