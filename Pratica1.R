@@ -42,3 +42,5 @@ for (n in 10:20){
   soma2 <- soma2 + (((3**n) / n) + ((2**n) / (n**2)))
 }
 soma2
+
+teste
