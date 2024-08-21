@@ -42,3 +42,23 @@ for (n in 10:20){
   soma2 <- soma2 + (((3**n) / n) + ((2**n) / (n**2)))
 }
 soma2
+
+#-------------------Exercicio4------------------------
+
+bolas <- sample(1:100, size = 40, replace = TRUE)
+bolas
+
+#---------------------LetraA--------------------------
+
+bolasPar <- bolas[bolas %% 2 == 0]
+length(bolasPar)
+
+#---------------------LetraB--------------------------
+
+bolasMaiorQue70 <- bolas[bolas > 70]
+length(bolasMaiorQue70)
+
+#---------------------LetraC--------------------------
+
+posImpares <- which(bolas %% 2 != 0)
+posImpares
