@@ -84,3 +84,29 @@ qtdade <- simularArremessos()
 
 cat("Foram necessárias", qtdade, "vezes para observar 2 vezes o número 4.")
 
+#--------------------Exercicio6------------------------
+
+quantidades <- c()
+
+for(i in 1:10000){
+  quantidades <- c(quantidades,simularArremessos())
+}
+
+cat("A média de vezes necessárias para ter duas observações do número 4 é ", mean(quantidades))
+
+#--------------------Exercicio7------------------------
+
+fibonacci <- function(n){
+  for(i in 1:n){
+    print(fibonacci1(i))
+  }
+}
+
+fibonacci1 <- function(n){
+  if(n == 1 | n == 2){
+    return(1);
+  }
+  else{
+    return(fibonacci1(n-2) + fibonacci1(n-1))
+  }
+}
