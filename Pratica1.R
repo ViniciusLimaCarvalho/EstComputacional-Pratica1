@@ -63,4 +63,24 @@ length(bolasMaiorQue70)
 posImpares <- which(bolas %% 2 != 0)
 posImpares
 
+#--------------------Exercicio5------------------------
+
+simularArremessos <- function(){
+  tentativas <- 0
+  nroObservacoes4 <- 0
+  
+  while(nroObservacoes4 < 2){
+    dado <- sample(1:6, 1)
+    
+    tentativas <- tentativas + 1
+    
+    if(dado == 4){
+      nroObservacoes4 <- nroObservacoes4 + 1
+    }
+  }
+  return(tentativas)
+}
+qtdade <- simularArremessos()
+
+cat("Foram necessárias", qtdade, "vezes para observar 2 vezes o número 4.")
 
