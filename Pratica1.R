@@ -110,3 +110,47 @@ fibonacci1 <- function(n){
     return(fibonacci1(n-2) + fibonacci1(n-1))
   }
 }
+
+#--------------------Exercicio8------------------------
+
+amgSecreto <- function() {
+  
+  participantes <- c("Michael","Dwight","Jim","Kevin","Creed")
+  
+  sucessos <- 0 
+  
+  
+  for(i in 1:100000){
+    
+    falha <- 0
+    
+    embaralha <- sample(x = participantes, replace = FALSE, size = 5)
+    sorteio <- sample(x = participantes, replace = FALSE, size = 5)
+    
+    for(k in 1:5) {
+      if(embaralha[k] == sorteio[k]) {
+        falha <- falha + 1
+      }
+    }
+    
+    if(falha == 0) {
+      sucessos <- sucessos + 1
+    }
+  
+  }
+  
+  cat("Numero de sucessos:",sucessos)
+  cat("\nNumero de falhas:",i-sucessos)
+  cat("\nProporção de acertos:",((sucessos/i)*100),"%\nProporção de erros:",100-((sucessos/i)*100),"%")
+  
+}
+  
+amgSecreto()
+  
+
+
+
+
+
+
+
