@@ -146,9 +146,47 @@ amgSecreto <- function() {
 }
   
 amgSecreto()
+
+#--------------------Exercicio9------------------------  
+
+jogoCraps <- function() {
   
+  vitorias <- 0
+  derrotas <- 0
+  
+  for(i in 1:100000) {
+    
+    dado1 <- sample(x = 1:6, replace = FALSE, size = 2)
+    
+    if(sum(dado1) == (7 || 11)) {
+      vitorias <- vitorias + 1
+    } 
+    else if(sum(dado1) == (2 || 3 || 12)) {
+      derrotas <- derrotas + 1
+      vitorias <- vitorias + 0
+      
+    } else {
+      
+      while(1) {
+        dado2 <- sample(x = 1:6, replace = FALSE, size = 2)
+        if(sum(dado2) == 7) {
+          derrotas <- derrotas + 1
+          vitorias <- vitorias + 0
+          break;
+        }
+        if(sum(dado2) == sum(dado1)) {
+          vitorias <- vitorias + 1
+          break;
+        }
+      }
+    }
+  }
+}
 
+jogoCraps()
 
+vitorias
+derrotas
 
 
 
