@@ -181,12 +181,15 @@ jogoCraps <- function() {
       }
     }
   }
+  
+  cat("Quantidade de vitórias:",vitorias,"\nProporção de vitórias:",vitorias/i,"\nPorcentagem:",(vitorias/i)*100,"%")
+  
+  cat("\nQuantidade de derrotas:",derrotas,"\nProporção de derrotas:",derrotas/i,"\nPorcentagem:",(derrotas/i)*100,"%")
+  
 }
 
 jogoCraps()
 
-vitorias
-derrotas
 
 
 
