@@ -190,6 +190,8 @@ jogoCraps <- function() {
 
 jogoCraps()
 
+#--------------------Exercicio10------------------------ 
+
 
 
 
