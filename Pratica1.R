@@ -192,7 +192,23 @@ jogoCraps()
 
 #--------------------Exercicio10------------------------ 
 
-
+lukeSkywalker <- function(L){
+  if(L > 20){
+    return(1)
+  }
+  if(L < 0){
+    return(0)
+  }
+  
+  moeda <- sample(1:2 , 1)
+  
+  if(moeda == 1){
+    return(lukeSkywalker(L-1))
+  }
+  else{
+    return(lukeSkywalker(L+1))
+  }
+}
 
 
 
