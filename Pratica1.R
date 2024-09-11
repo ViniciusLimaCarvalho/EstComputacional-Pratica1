@@ -191,12 +191,13 @@ jogoCraps <- function() {
 jogoCraps()
 
 #--------------------Exercicio10------------------------ 
+#----------------------LetraA---------------------------
 
 lukeSkywalker <- function(L){
-  if(L > 20){
+  if(L >= 20){
     return(1)
   }
-  if(L < 0){
+  if(L <= 0){
     return(0)
   }
   
@@ -210,6 +211,37 @@ lukeSkywalker <- function(L){
   }
 }
 
+#----------------------LetraB---------------------------
+
+StarWars <- function(L){
+  vitoriasDerrotas <- c()
+  for(i in 1:10000){
+    vitoriasDerrotas <- c(vitoriasDerrotas,lukeSkywalker(L))
+  }
+  return(vitoriasDerrotas)
+}
+
+#----------------------LetraC---------------------------
+library(ggplot2)
+
+dados <- function(){
+  temp <- c()
+  for(L in 1:19){
+    temp <- c(temp,mean(StarWars(L)))
+  }
+  return(temp)
+}
+
+grafico <- dados()
+valoresL <- 1:19  
 
 
+df <- data.frame(L = valoresL, Media = grafico)
 
+
+ggplot(df, aes(x = L, y = Media)) +
+  geom_col(fill = "steelblue") +
+  labs(title = "Média de Vitórias/Derrotas por Valor Inicial L",
+       x = "Valor Inicial L",
+       y = "Média de Vitórias/Derrotas") +
+  theme_minimal()
