@@ -245,3 +245,35 @@ ggplot(df, aes(x = L, y = Media)) +
        x = "Valor Inicial L",
        y = "Média de Vitórias/Derrotas") +
   theme_minimal()
+
+#--------------------Exercicio11------------------------ 
+
+link <- c(0,2)
+passos <- c("L", "R", "U", "D")
+
+
+#--------------------Letra A------------------------ 
+
+for(i in 1:8) {
+  zelda <- sample(x = passos, replace = TRUE, size = 1)
+  
+  if(zelda == "L") {
+    link[2] = link[2] - 1
+  }
+  
+  if(zelda == "R") {
+    link[2] = link[2] + 1
+  }
+  
+  if(zelda == "U") {
+    link[1] = link[1] + 1
+  }
+  
+  if(zelda == "D") {
+    link[1] = link[1] - 1
+  }
+  
+  
+}
+
+cat("Link está no ponto",link,"após 8 passos!")
