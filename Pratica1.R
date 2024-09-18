@@ -339,4 +339,14 @@ proporcaoLink(0)
 
 #------------------Exercicio12------------------
 
+#------------------Exercicio13------------------
 
+assassinatos <- read.table(file = "dados.txt", header = TRUE, sep = ";")
+
+#--------------------Letra A--------------------
+
+library(ggplot2)
+
+ggplot(data = assassinatos, mapping = aes(x = Genero, fill = Genero))+
+  geom_bar()+
+  theme_minimal()
