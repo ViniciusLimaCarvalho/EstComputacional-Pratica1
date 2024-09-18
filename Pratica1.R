@@ -297,6 +297,7 @@ proporcao <- countOrigem/qtd
 
 caminhoLinkNvezes <- function(N){
   link <- c(0,0)
+  if(N == 0) return(link)
   for(i in 1:N) {
     zelda <- sample(x = passos, replace = TRUE, size = 1)
     
@@ -334,4 +335,8 @@ proporcaoLink <- function(N){
   return(countOrigem/qtd)
 }
 
-proporcaoLink(100)
+proporcaoLink(0)
+
+#------------------Exercicio12------------------
+
+
