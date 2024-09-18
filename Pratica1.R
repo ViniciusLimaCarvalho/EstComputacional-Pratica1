@@ -339,14 +339,6 @@ proporcaoLink(0)
 
 #------------------Exercicio12------------------
 
-#------------------Exercicio13------------------
+steven <- c(0,1,0)
+garnit <- c(0,0,1)
 
-assassinatos <- read.table(file = "dados.txt", header = TRUE, sep = ";")
-
-#--------------------Letra A--------------------
-
-library(ggplot2)
-
-ggplot(data = assassinatos, mapping = aes(x = Genero, fill = Genero))+
-  geom_bar()+
-  theme_minimal()
