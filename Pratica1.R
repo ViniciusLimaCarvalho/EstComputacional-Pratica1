@@ -248,32 +248,90 @@ ggplot(df, aes(x = L, y = Media)) +
 
 #--------------------Exercicio11------------------------ 
 
-link <- c(0,2)
 passos <- c("L", "R", "U", "D")
 
 
 #--------------------Letra A------------------------ 
 
-for(i in 1:8) {
-  zelda <- sample(x = passos, replace = TRUE, size = 1)
-  
-  if(zelda == "L") {
-    link[2] = link[2] - 1
+caminhoLink <- function(){
+  link <- c(0,0)
+  for(i in 1:8) {
+    zelda <- sample(x = passos, replace = TRUE, size = 1)
+    
+    if(zelda == "L") {
+      link[2] = link[2] - 1
+    }
+    
+    if(zelda == "R") {
+      link[2] = link[2] + 1
+    }
+    
+    if(zelda == "U") {
+      link[1] = link[1] + 1
+    }
+    
+    if(zelda == "D") {
+      link[1] = link[1] - 1
+    }
+    
+    
   }
-  
-  if(zelda == "R") {
-    link[2] = link[2] + 1
-  }
-  
-  if(zelda == "U") {
-    link[1] = link[1] + 1
-  }
-  
-  if(zelda == "D") {
-    link[1] = link[1] - 1
-  }
-  
-  
+
+  return(link)
 }
 
-cat("Link está no ponto",link,"após 8 passos!")
+#--------------------Letra B------------------------
+
+countOrigem <- 0
+qtd <- 10000
+
+for(i in 1:qtd){
+  camLink <- caminhoLink()
+  if(camLink[1] == 0 && camLink[2] == 0){
+    countOrigem <- countOrigem + 1
+  }
+}
+proporcao <- countOrigem/qtd
+
+#--------------------Letra C------------------------
+
+caminhoLinkNvezes <- function(N){
+  link <- c(0,0)
+  for(i in 1:N) {
+    zelda <- sample(x = passos, replace = TRUE, size = 1)
+    
+    if(zelda == "L") {
+      link[2] = link[2] - 1
+    }
+    
+    if(zelda == "R") {
+      link[2] = link[2] + 1
+    }
+    
+    if(zelda == "U") {
+      link[1] = link[1] + 1
+    }
+    
+    if(zelda == "D") {
+      link[1] = link[1] - 1
+    }
+    
+    
+  }
+  return(link)
+}
+
+proporcaoLink <- function(N){
+  qtd <- 10000
+  countOrigem <- 0
+  
+  for(i in 1:qtd){
+    camLink <- caminhoLinkNvezes(N)
+    if(camLink[1] == 0 && camLink[2] == 0){
+      countOrigem <- countOrigem + 1
+    }
+  }
+  return(countOrigem/qtd)
+}
+
+proporcaoLink(100)
