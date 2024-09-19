@@ -424,4 +424,30 @@ ggplot(data = assassinatos, aes(x = Genero, fill = Genero))+
 
 ggplot(data = assassinatos, aes(x = Idade, fill = "blue"))+
   geom_histogram(mapping = )
-  
+
+
+#------------------Exercicio14------------------
+
+macakes <- read.table(file = "primatas.txt", header = TRUE, sep = ":")
+
+#------------------LetraA------------------
+
+summary(macakes)
+
+#------------------LetraB------------------
+
+library(ggplot2)
+
+ggplot(data = macakes, aes(x = especie, fill = especie))+
+  geom_bar() +
+  labs(title = "Quantidade de cada espécie no conjunto 🐒", x = "Espécie", y = "Quantidade", fill = "Espécie") +
+  scale_x_discrete(labels = c("bonobo" = "Bonobo", "chimpanze" = "Chimpanzé")) +
+  scale_fill_discrete(labels = c("bonobo" = "Bonobo", "chimpanze" = "Chimpanzé")) +
+  theme_minimal()
+
+ggplot(data = macakes, aes(x = especie, fill = genero))+
+  geom_bar() +
+  labs(title = "Frequência de machos e fêmeas em cada espécie 🐒", x = "Espécie", y = "Quantidade", fill = "Gênero") +
+  scale_x_discrete(labels = c("bonobo" = "Bonobo", "chimpanze" = "Chimpanzé")) +
+  scale_fill_discrete(labels = c("femea" = "Fêmea", "macho" = "Macho")) +
+  theme_minimal()
