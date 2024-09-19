@@ -417,14 +417,23 @@ library(ggplot2)
 ggplot(data = assassinatos, aes(x = Genero, fill = Genero))+
   geom_bar()+
   labs(title ="Assassinatos por Gênero", y = "Quantidade", x = "Gênero", fill = "Gênero")+
+  scale_fill_discrete(labels = c("Women" = "mulher", "Men" = "homem"))+
   scale_x_discrete(labels=c("Women" = "mulher", "Men" = "homem"))+
   theme_minimal()
 
 #--------------------Letra B--------------------
 
-ggplot(data = assassinatos, aes(x = Idade, fill = "blue"))+
-  geom_histogram(mapping = )
+ggplot(data = assassinatos, aes(x = Idade))+
+  geom_histogram(bins = 8, color = "black",fill = "lightblue")+
+  labs(title = "Assassinatos por Idade", y = "Quantidade")+
+  theme_minimal()
 
+#--------------------Letra C--------------------
+
+ggplot(data = assassinatos, aes(y = Idade))+
+  geom_boxplot(fill = "lightblue")+
+  labs(title = "Boxplot de Assassinatos por Idade")+
+  theme_minimal()
 
 #------------------Exercicio14------------------
 
