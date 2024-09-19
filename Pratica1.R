@@ -346,8 +346,6 @@ proporcaoLink(1000)
 
 steven <- c(0,1,0)
 garnit <- c(0,0,1)
-vSteven <- 0
-vGarnit <- 0
 
 # cara = 1 coroa = 0
 
@@ -355,53 +353,18 @@ sorteio <- c(sample(x = 0:1, size = 3, replace = TRUE))
 sorteio <- as.numeric(sorteio) #permite utilizar identical() para comparar os vetores
 
 # Para jogar uma única vez
-while((vGarnit < 1) && (vSteven < 1)) {
-  if(identical(steven,sorteio)) {
-    print("Steven ganhou!")
-    vSteven <- vSteven + 1
-    break
-  } else if(identical(garnit,sorteio)) {
-    print("Garnit ganhou!")
-    vGarnit <- vGarnit + 1
-    break
-  }
-  
-  aux <- c(sample(x = 0:1, size = 1))
-  aux <- as.numeric(aux)
-  
-  sorteio[1] = sorteio[2]
-  sorteio[2] = sorteio[3]
-  sorteio[3] = aux[1]
-}
-
-# 10 mil vezes
-
-steven <- c(0,1,0)
-garnit <- c(0,0,1)
-vSteven <- 0
-vGarnit <- 0
-
-sorteio <- c(sample(x = 0:1, size = 3, replace = TRUE))
-sorteio <- as.numeric(sorteio)
-
-
-for(j in 1:10000) {
-  
-    fimRodada <- 0
-    
-while(fimRodada == 0) {
+JogoStevenGarnit <- function(vSteven, vGarnit) {
+  while((vGarnit < 1) && (vSteven < 1)) {
     if(identical(steven,sorteio)) {
       print("Steven ganhou!")
       vSteven <- vSteven + 1
-      fimRodada <- fimRodada + 1
-      
+      return ("steven")
     } else if(identical(garnit,sorteio)) {
-      print("Garnit ganhou!")
-      vGarnit <- vGarnit + 1
-      fimRodada <- fimRodada + 1
-    
+        print("Garnit ganhou!")
+        vGarnit <- vGarnit + 1
+        return ("garnit")
     }
-
+  
     aux <- c(sample(x = 0:1, size = 1))
     aux <- as.numeric(aux)
   
@@ -410,7 +373,24 @@ while(fimRodada == 0) {
     sorteio[3] = aux[1]
   }
 }
-mediaGarnit <- vGarnit/10000
+
+teste <- c(JogoStevenGarnit(0,0))
+
+# 10 mil vezes
+
+steven <- c(0,1,0)
+garnit <- c(0,0,1)
+
+resultados <- c()
+
+for(j in 1:10000) {
+  sorteio <- c(sample(x = 0:1, size = 3, replace = TRUE))
+  sorteio <- as.numeric(sorteio)
+  resultados[j] <- c(JogoStevenGarnit(0,0))
+}
+mean("garnit" == resultados)
+
+print("Ao rodar o teste 10mil vezes (múltiplas vezes para ter certeza), podemos observar que Garnit tem a maior média e/ou porcentagem de vitórias, ou seja, ela ganha a maior parte das vezes, isso é devido à sequência 0,0,1 escolhido por Garnit, ser mais fácil de ocorrer")
 
 #------------------Exercicio13------------------
 
@@ -490,13 +470,17 @@ ggplot(data = assassinatos, mapping = aes(x = AnoDaMorte))+
 
 macakes <- read.table(file = "primatas.txt", header = TRUE, sep = ":")
 
+library(ggplot2)
+library(class)
+library(rpart)
+library(rpart.plot)
+library(randomForest)
+
 #------------------LetraA------------------
 
 summary(macakes)
 
 #------------------LetraB------------------
-
-library(ggplot2)
 
 ggplot(data = macakes, aes(x = especie, fill = especie))+
   geom_bar(color = "#2e2c2c") +
@@ -511,4 +495,58 @@ ggplot(data = macakes, aes(x = especie, fill = genero))+
   scale_x_discrete(labels = c("bonobo" = "Bonobo", "chimpanze" = "Chimpanzé")) +
   scale_fill_discrete(labels = c("femea" = "Fêmea", "macho" = "Macho")) +
   theme_classic()
+
+#------------------LetraC------------------
+
+chimpanzes <- macakes[macakes$especie == 'chimpanze',]
+bonobos <- macakes[macakes$especie == 'bonobo',]
+
+ggplot(data = bonobos, aes(x = peso, y = altura, col = genero))+
+  geom_point() +
+  labs(title = "Comparação entre fêmeas e machos dos bonobos 🐵")+
+  theme_minimal()
+
+ggplot(data = chimpanzes, aes(x = peso, y = altura, col = genero))+
+  geom_point() +
+  labs(title = "Comparação entre fêmeas e machos dos chimpanzés 🐵")+
+  theme_minimal()
+
+#------------------LetraD------------------
+
+macakeMacho <- macakes[macakes$genero == 'macho',]
+macakeFemea <- macakes[macakes$genero == 'femea',]
+
+#removendo colunas desnecessárias
+macakeMacho <- macakeMacho[,-c(2)]
+macakeFemea <- macakeFemea[,-c(2)]
+
+ggplot(data = macakeMacho, aes(x = peso, y = altura, col = especie)) +
+  geom_point()+
+  labs(title = "Comparação entre machos dos bonobos e chimpanzés 🙊")+
+  theme_minimal()
+
+
+ggplot(data = macakeFemea, aes(x = peso, y = altura, col = especie))+
+  geom_point()+
+  labs(title = "Comparação entre fêmeas dos bonobos e chimpanzés 🙊") +
+  theme_minimal()
+
+#------------------LetraE------------------
+
+print("A partir da análise dos itens anteriores, em relação ao conjunto de dados em si, podemos afirmar que a proporção entre a quantidade de chimpanzés e bonobos é de 50/50, ou seja, metade do conjunto é de chimpanzés, e a outra metade é de bonobos. Na mesma ótica, também é possível afirmar, que nos dois conjuntos, o número de machos e fêmeas é igual, e, assim como as espécies, eles estão igualmente distribuidos em 50/50. Em relação às diferenças entre os gêneros dentro das espécies, podemos observar que para os chimpanzés, temos machos mais altos e com maior peso, já para os bonobos, observamos quase o mesmo padrão, no entanto, dessa vez a diferença entre os dois fica um pouco menos acentuada, e temos algumas fêmeas com a mesma altura que alguns machos, mas o peso continua maior para os machos. De forma geral, temos machos mais altos e mais pesados. E finalmente, comparando os generos das espécies entre si, temos que os chimpanzés tendem a ter machos um pouco mais altos (pois a altura é a mesma em alguns casos) e definitivamente mais pesados, já para as fêmeas temos a tendência de uma altura maior nos bonobos (apesar de novamente os dois conjuntos apresentarem intersecções nesse atributo), mas, de forma geral, os chimpanzés [fêmeas] apresentam um peso maior.")
+
+#------------------LetraF------------------
+
+n <- round(0.8*nrow(macakes))
+
+indices_treino <- sample(1:nrow(macakes), size = n, replace = FALSE)
+
+treino <- macakes[indices_treino,]
+teste <- macakes[-indices_treino,]
+
+arvore <- rpart(formula = especie ~. , data = treino, method = "class")
+rpart.plot(arvore, extra = 101)
+previsao.arvore <- predict(arvore, newdata = teste, type = "class")
+mean(previsao.arvore == teste$especie)
+
 
