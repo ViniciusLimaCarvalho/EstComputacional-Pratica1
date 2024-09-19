@@ -347,7 +347,7 @@ vGarnit <- 0
 # cara = 1 coroa = 0
 
 sorteio <- c(sample(x = 0:1, size = 3, replace = TRUE))
-sorteio <- as.numeric(sorteio)
+sorteio <- as.numeric(sorteio) #permite utilizar identical() para comparar os vetores
 
 # Para jogar uma única vez
 while((vGarnit < 1) && (vSteven < 1)) {
