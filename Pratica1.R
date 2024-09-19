@@ -2,15 +2,17 @@
 #---------------------LetraA--------------------------
 
 a <- (10:30)
+a
 
 #---------------------LetraB-------------------------
 
 b <- (30:10)
+b
 
 #--------------------LetraC--------------------------
 
 c <- c(a,b)
-
+c
 
 #-------------------Exercicio2-----------------------
 #---------------------LetraA-------------------------
@@ -293,7 +295,7 @@ for(i in 1:qtd){
 }
 proporcao <- countOrigem/qtd
 
-#Essa proporção significa que as chances de, após 8 passos, Link voltar para a origem são bem baixas, o que faz sentido, visto que a cada passo ele tem 25% de chance de ir para qualquer uma das 4 direções.
+print("Essa proporção significa que as chances de, após 8 passos, Link voltar para a origem são bem baixas, o que faz sentido, visto que a cada passo ele tem 25% de chance de ir para qualquer uma das 4 direções.")
 
 #--------------------Letra C------------------------
 
@@ -339,8 +341,6 @@ proporcaoLink <- function(N){
     return(countOrigem/qtd)
   }
 }
-
-proporcaoLink(1000)
 
 #------------------Exercicio12------------------
 
@@ -405,8 +405,7 @@ ggplot(data = assassinatos, aes(x = Genero, fill = Genero))+
   scale_fill_discrete(labels = c("Women" = "mulher", "Men" = "homem"))+
   scale_x_discrete(labels=c("Women" = "mulher", "Men" = "homem"))+
   theme_minimal()
-
-#O gráfico demonstra que a preferência do assassino era por alvos mulheres
+print("O gráfico demonstra que a preferência do assassino era por alvos mulheres")
 
 #--------------------Letra B--------------------
 
@@ -414,7 +413,7 @@ ggplot(data = assassinatos, aes(x = Idade))+
   geom_histogram(bins = 8, color = "black",fill = "lightblue")+
   labs(title = "Assassinatos por Idade", y = "Quantidade")+
   theme_minimal()
-#Com este gráfico podemos perceber que a maioria dos assassinatos se concentrava em idosos
+print("Com este gráfico podemos perceber que a maioria dos assassinatos se concentrava em idosos")
 
 homensMortos <- assassinatos[assassinatos$Genero == "Men",]
 
@@ -431,7 +430,7 @@ ggplot(data = mulheresMortas, aes(x = Idade))+
   labs(title = "Assassinatos por Idade - Mulheres", y = "Quantidade")+
   theme_minimal()
 
-#Com esta análise, vemos que tanto para homens quanto para mulheres assassinados há maior frequência de idosos
+print("Com esta análise, vemos que tanto para homens quanto para mulheres assassinados há maior frequência de idosos")
 #--------------------Letra C--------------------
 
 ggplot(data = assassinatos, aes(y = Idade))+
@@ -439,7 +438,7 @@ ggplot(data = assassinatos, aes(y = Idade))+
   labs(title = "Boxplot de Assassinatos por Idade")+
   theme_minimal()
 
-#O boxplot indica que a maioria dos assassinatos eram em idosos, com a mediana sendo por volta de 76 anos, e os casos menores que 60 anos são outliers
+print("O boxplot indica que a maioria dos assassinatos eram em idosos, com a mediana sendo por volta de 76 anos, e os casos menores que 60 anos são outliers.")
 
 #--------------------Letra D--------------------
 
@@ -451,7 +450,7 @@ ggplot(data = assassinatos, aes(x = LocalDaMorte))+
   geom_bar(fill = "lightblue", color = "black")+
   theme_minimal()
 
-#O gráfico indica que a maioria dos assassinatos ocorreu na própria residência da vítima
+print("O gráfico indica que a maioria dos assassinatos ocorreu na própria residência da vítima.")
 
 #--------------------Letra E--------------------
 
@@ -460,11 +459,11 @@ ggplot(data = assassinatos, mapping = aes(x = AnoDaMorte))+
   theme_minimal()+
   labs(title = "Assassinatos de Harold Shipman por Ano", y = "Quantidade", x = "Ano")
 
-#A maior quantidade de assassinatos de Shipman ocorreu nos anos 90, que também foi o final de sua "carreira"
+print("A maior quantidade de assassinatos de Shipman ocorreu nos anos 90, que também foi o final de sua \"carreira\"", quote = FALSE)
 
 #--------------------Letra F--------------------
 
-#Harold Shipman foi um assassino em série com um perfil de alvo claro: mulheres idosas, as quais ele assassinava principalmente na residência da vítima. Os assassinatos em série começaram em "poucas" quantidades por volta de 1975 e foram progressivamente aumentando, chegando no auge em cerca de 1997. As mortes em hospitais e lares de idosos podem indicar algumas coisas: por Shipman ser um médico, sua profissão pode ter servido de pretexto para entrar nesses lugares, onde cometia seus crimes, ou também pode signficar que alguns dos alvos que foram assassinados foram levados ao hospital com os ferimentos cometidos por Harold. Os lares de idosos também confirmam mais uma vez a clara preferência do assassino em fazer de vítimas os idosos.
+print("Harold Shipman foi um assassino em série com um perfil de alvo claro: mulheres idosas, as quais ele assassinava principalmente na residência da vítima. Os assassinatos em série começaram em \"poucas\" quantidades por volta de 1975 e foram progressivamente aumentando, chegando no auge em cerca de 1997. As mortes em hospitais e lares de idosos podem indicar algumas coisas: por Shipman ser um médico, sua profissão pode ter servido de pretexto para entrar nesses lugares, onde cometia seus crimes, ou também pode signficar que alguns dos alvos que foram assassinados foram levados ao hospital com os ferimentos cometidos por Harold. Os lares de idosos também confirmam mais uma vez a clara preferência do assassino em fazer de vítimas os idosos.", quote = FALSE)
 
 #------------------Exercicio14------------------
 
