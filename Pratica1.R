@@ -293,6 +293,8 @@ for(i in 1:qtd){
 }
 proporcao <- countOrigem/qtd
 
+#Essa proporção significa que as chances de, após 8 passos, Link voltar para a origem são bem baixas, o que faz sentido, visto que a cada passo ele tem 25% de chance de ir para qualquer uma das 4 direções.
+
 #--------------------Letra C------------------------
 
 caminhoLinkNvezes <- function(N){
@@ -323,19 +325,22 @@ caminhoLinkNvezes <- function(N){
 }
 
 proporcaoLink <- function(N){
-  qtd <- 10000
-  countOrigem <- 0
-  
-  for(i in 1:qtd){
-    camLink <- caminhoLinkNvezes(N)
-    if(camLink[1] == 0 && camLink[2] == 0){
-      countOrigem <- countOrigem + 1
+  if(N %% 2 == 1) print("N não pode ser um número ímpar")
+  else{
+    qtd <- 10000
+    countOrigem <- 0
+    
+    for(i in 1:qtd){
+      camLink <- caminhoLinkNvezes(N)
+      if(camLink[1] == 0 && camLink[2] == 0){
+        countOrigem <- countOrigem + 1
+      }
     }
+    return(countOrigem/qtd)
   }
-  return(countOrigem/qtd)
 }
 
-proporcaoLink(0)
+proporcaoLink(1000)
 
 #------------------Exercicio12------------------
 
@@ -421,19 +426,65 @@ ggplot(data = assassinatos, aes(x = Genero, fill = Genero))+
   scale_x_discrete(labels=c("Women" = "mulher", "Men" = "homem"))+
   theme_minimal()
 
+#O gráfico demonstra que a preferência do assassino era por alvos mulheres
+
 #--------------------Letra B--------------------
 
 ggplot(data = assassinatos, aes(x = Idade))+
   geom_histogram(bins = 8, color = "black",fill = "lightblue")+
   labs(title = "Assassinatos por Idade", y = "Quantidade")+
   theme_minimal()
+#Com este gráfico podemos perceber que a maioria dos assassinatos se concentrava em idosos
 
+homensMortos <- assassinatos[assassinatos$Genero == "Men",]
+
+ggplot(data = homensMortos, aes(x = Idade))+
+  geom_histogram(bins = 8, color = "black",fill = "lightblue")+
+  labs(title = "Assassinatos por Idade - Homens", y = "Quantidade")+
+  theme_minimal()
+
+mulheresMortas <- assassinatos[assassinatos$Genero == 'Women',]
+
+
+ggplot(data = mulheresMortas, aes(x = Idade))+
+  geom_histogram(bins = 8, color = "black",fill = "lightblue")+
+  labs(title = "Assassinatos por Idade - Mulheres", y = "Quantidade")+
+  theme_minimal()
+
+#Com esta análise, vemos que tanto para homens quanto para mulheres assassinados há maior frequência de idosos
 #--------------------Letra C--------------------
 
 ggplot(data = assassinatos, aes(y = Idade))+
   geom_boxplot(fill = "lightblue")+
   labs(title = "Boxplot de Assassinatos por Idade")+
   theme_minimal()
+
+#O boxplot indica que a maioria dos assassinatos eram em idosos, com a mediana sendo por volta de 76 anos, e os casos menores que 60 anos são outliers
+
+#--------------------Letra D--------------------
+
+assassinatos$LocalDaMorte <- as.factor(assassinatos$LocalDaMorte)
+
+ggplot(data = assassinatos, aes(x = LocalDaMorte))+
+  labs(title = "Local da Morte dos Assassinados", y = "Quantidade", x = "Local")+
+  scale_x_discrete(labels = c("Nursing home" = "Lar de Idosos", "Own home" = "Própria residência"))+
+  geom_bar(fill = "lightblue", color = "black")+
+  theme_minimal()
+
+#O gráfico indica que a maioria dos assassinatos ocorreu na própria residência da vítima
+
+#--------------------Letra E--------------------
+
+ggplot(data = assassinatos, mapping = aes(x = AnoDaMorte))+
+  geom_bar(fill = "lightgreen", color = "black")+
+  theme_minimal()+
+  labs(title = "Assassinatos de Harold Shipman por Ano", y = "Quantidade", x = "Ano")
+
+#A maior quantidade de assassinatos de Shipman ocorreu nos anos 90, que também foi o final de sua "carreira"
+
+#--------------------Letra F--------------------
+
+#Harold Shipman foi um assassino em série com um perfil de alvo claro: mulheres idosas, as quais ele assassinava principalmente na residência da vítima. Os assassinatos em série começaram em "poucas" quantidades por volta de 1975 e foram progressivamente aumentando, chegando no auge em cerca de 1997. As mortes em hospitais e lares de idosos podem indicar algumas coisas: por Shipman ser um médico, sua profissão pode ter servido de pretexto para entrar nesses lugares, onde cometia seus crimes, ou também pode signficar que alguns dos alvos que foram assassinados foram levados ao hospital com os ferimentos cometidos por Harold. Os lares de idosos também confirmam mais uma vez a clara preferência do assassino em fazer de vítimas os idosos.
 
 #------------------Exercicio14------------------
 
