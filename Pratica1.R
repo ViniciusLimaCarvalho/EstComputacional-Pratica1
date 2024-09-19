@@ -1,3 +1,6 @@
+#Vinícius Lima Carvalho 12221BCC018
+#Osvaldo Pagioli de Lollo Silva 12221BCC047
+
 #--------------------Exercicio1------------------------
 #---------------------LetraA--------------------------
 
