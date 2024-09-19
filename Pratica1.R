@@ -341,6 +341,71 @@ proporcaoLink(0)
 
 steven <- c(0,1,0)
 garnit <- c(0,0,1)
+vSteven <- 0
+vGarnit <- 0
+
+# cara = 1 coroa = 0
+
+sorteio <- c(sample(x = 0:1, size = 3, replace = TRUE))
+sorteio <- as.numeric(sorteio)
+
+# Para jogar uma única vez
+while((vGarnit < 1) && (vSteven < 1)) {
+  if(identical(steven,sorteio)) {
+    print("Steven ganhou!")
+    vSteven <- vSteven + 1
+    break
+  } else if(identical(garnit,sorteio)) {
+    print("Garnit ganhou!")
+    vGarnit <- vGarnit + 1
+    break
+  }
+  
+  aux <- c(sample(x = 0:1, size = 1))
+  aux <- as.numeric(aux)
+  
+  sorteio[1] = sorteio[2]
+  sorteio[2] = sorteio[3]
+  sorteio[3] = aux[1]
+}
+
+# 10 mil vezes
+
+steven <- c(0,1,0)
+garnit <- c(0,0,1)
+vSteven <- 0
+vGarnit <- 0
+
+sorteio <- c(sample(x = 0:1, size = 3, replace = TRUE))
+sorteio <- as.numeric(sorteio)
+
+
+for(j in 1:10000) {
+  
+    fimRodada <- 0
+    
+while(fimRodada == 0) {
+    if(identical(steven,sorteio)) {
+      print("Steven ganhou!")
+      vSteven <- vSteven + 1
+      fimRodada <- fimRodada + 1
+      
+    } else if(identical(garnit,sorteio)) {
+      print("Garnit ganhou!")
+      vGarnit <- vGarnit + 1
+      fimRodada <- fimRodada + 1
+    
+    }
+
+    aux <- c(sample(x = 0:1, size = 1))
+    aux <- as.numeric(aux)
+  
+    sorteio[1] = sorteio[2]
+    sorteio[2] = sorteio[3]
+    sorteio[3] = aux[1]
+  }
+}
+mediaGarnit <- vGarnit/10000
 
 #------------------Exercicio13------------------
 
