@@ -413,6 +413,15 @@ assassinatos <- read.table(file = "dados.txt", header = TRUE, sep = ";")
 
 #--------------------Letra A--------------------
 library(ggplot2)
-ggplot(data = assassinatos, mapping = aes(x = Genero, fill = Genero))+
+
+ggplot(data = assassinatos, aes(x = Genero, fill = Genero))+
   geom_bar()+
+  labs(title ="Assassinatos por Gênero", y = "Quantidade", x = "Gênero", fill = "Gênero")+
+  scale_x_discrete(labels=c("Women" = "mulher", "Men" = "homem"))+
   theme_minimal()
+
+#--------------------Letra B--------------------
+
+ggplot(data = assassinatos, aes(x = Idade, fill = "blue"))+
+  geom_histogram(mapping = )
+  
