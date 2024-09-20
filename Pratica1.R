@@ -546,6 +546,29 @@ indices_treino <- sample(1:nrow(macakes), size = n, replace = FALSE)
 treino <- macakes[indices_treino,]
 teste <- macakes[-indices_treino,]
 
+# usando estruturas condicionais
+
+resultados <- c()
+
+for (i in 1:nrow(teste)) {
+  if((teste$peso[i] < 50) && (teste$genero[i] == "macho")) {
+    resultados[i] <- "bonobo"
+  } else if(teste$peso[i] > 50) {
+    resultados[i] <- "chimpanze"
+  } else if(teste$altura[i] == 130) {
+    resultados[i] <- "bonobo"
+  } else if((teste$peso[i] >= 38) && (teste$genero[i] == "femea")) {
+    resultados[i] <- "chimpanze"
+  } else if(teste$peso[i] <= 37) {
+    resultados[i] <- "bonobo"
+  }
+}
+
+mean(resultados == teste$especie)
+
+
+# utilizando a funcao do R (apenas para fins de visualização da árvore)
+
 arvore <- rpart(formula = especie ~. , data = treino, method = "class")
 rpart.plot(arvore, extra = 101)
 previsao.arvore <- predict(arvore, newdata = teste, type = "class")
